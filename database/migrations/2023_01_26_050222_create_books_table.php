@@ -14,7 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->id();
+            $table->increments('book_id');
+            $table->string('title');
+            $table->string('author');
+            $table->string('publisher');
+            $table->string('ISBN');
+            // サマリー：紹介文
+            $table->string('summary');
+            $table->string('gunre');
+            // 貸出可能かavailable
+            $table->boolean('available');
             $table->timestamps();
         });
     }

@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use HasFactory;
+    // 主キーの列名を指定
+    protected $primaryKey = 'book_id';
+
+    // ホワイトリスト（DBに入力可能・編集可能）
+    // create()やupdate() 、fill()が可能
+    protected $fillable = [
+        'title',
+        'author',
+        'publisher',
+        'ISBN',
+        'summary',
+        'gunre',
+        'available'
+      ];
 }
