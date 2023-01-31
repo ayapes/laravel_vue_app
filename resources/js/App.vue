@@ -1,4 +1,5 @@
 <template>
+<p>家のパソコンからこんにちわ</p>
     <nav id="nav_menu">
         <div><h1>本の貸し出しデータベース</h1></div>
         <div>
