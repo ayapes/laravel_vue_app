@@ -20,6 +20,7 @@ class BooksTableSeeder extends Seeder
             'author' => '中山 清喬',
             'publisher' => 'インプレス',
             'ISBN' => '978-4295007807',
+            'img' => 'https://tshop.r10s.jp/book/cabinet/7807/9784295007807.jpg',
             'summary' => '発売から8年であっという間に総計40万部到達した大人気シリーズの原点。
             「どうして? 」「なぜそうなる? 」が必ずわかるJava入門書史上最強の定番書!
             読みやすさ、使いやすさをさらに磨いた増補改訂版登場!',
@@ -33,6 +34,7 @@ class BooksTableSeeder extends Seeder
             'author' => 'CodeMafia 外村 将大',
             'publisher' => '翔泳社',
             'ISBN' => '978-4798160276',
+            'img' => 'https://shop.r10s.jp/book/cabinet/0276/9784798160276_1_20.jpg',
             'summary' => 'JavaScript“標準教科書"が人気講師の書き下ろしで新登場!
             初心者から経験者まで。上達するために
             「押さえておきたい基礎知識」総ざらい',
@@ -46,6 +48,7 @@ class BooksTableSeeder extends Seeder
             'author' => 'きたみ りゅうじ',
             'publisher' => '技術評論社',
             'ISBN' => '978-4297124519',
+            'img' => 'https://shop.r10s.jp/book/cabinet/4519/9784297124519_1_2.jpg',
             'summary' => '絵解きでわかるキタミ式',
             'gunre' => '基本情報',
             'available' => true,

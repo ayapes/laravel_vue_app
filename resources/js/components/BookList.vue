@@ -2,7 +2,7 @@
     <h3>書籍情報</h3>
     <div class="booklist" v-for="datum in data">
     <p class="booklist_title">{{ datum.title }}</p>
-    <p class="booklist_img"><img :src="'/images/bookicon.png'" alt=""></p>
+    <p class="booklist_img"><img :src="datum.img" alt=""></p>
     <div class="booklist_others">
       <p class="booklist_author">著者：{{ datum.author }}</p>
       <p class="booklist_publisher">出版社：{{ datum.publisher }}</p>

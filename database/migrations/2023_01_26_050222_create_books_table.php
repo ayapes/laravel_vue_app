@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('publisher');
             $table->string('ISBN');
+            $table->string('img');
             // サマリー：紹介文
             $table->string('summary');
             $table->string('gunre');

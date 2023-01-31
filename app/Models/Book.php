@@ -17,6 +17,7 @@ class Book extends Model
         'author',
         'publisher',
         'ISBN',
+        'img',
         'summary',
         'gunre',
         'available'
