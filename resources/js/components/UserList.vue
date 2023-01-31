@@ -20,7 +20,6 @@ export default {
     async mounted() {
         const url_u = "/api/users";
         const response_u = await axios.get(url_u);
-        console.log(response_u.data);
         this.users = response_u.data;
     }
 }

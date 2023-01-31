@@ -1,13 +1,21 @@
 <template>
-    <h3>本のタイトル</h3>
-    <ul v-for="datum in data" class="list-group">
-        <li  class="list-group-item">{{ datum.title }}</li>
-    </ul>
+    <h3>書籍情報</h3>
+    <div class="booklist" v-for="datum in data">
+    <p class="booklist_title">{{ datum.title }}</p>
+    <p class="booklist_img"><img :src="'/images/bookicon.png'" alt=""></p>
+    <div class="booklist_others">
+      <p class="booklist_author">著者：{{ datum.author }}</p>
+      <p class="booklist_publisher">出版社：{{ datum.publisher }}</p>
+      <p class="booklist_isbn">ISBN：{{ datum.ISBN }}</p>
+      <p class="booklist_gunre">ジャンル：{{ datum.gunre }}</p>
+      <p class="booklist_summary">{{ datum.summary }}</p>
+    </div>
+    </div>
+
 </template>
 
 <script>
 import axios from "axios";
-
 
 export default {
     name: 'Book',
@@ -19,8 +27,11 @@ export default {
     async mounted() {
         const url_b = "/api/books";
         const response_b = await axios.get(url_b);
-        console.log(response_b.data);
         this.data = response_b.data;
     }
 }
 </script>
+<style>
+
+
+</style>
