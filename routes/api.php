@@ -12,6 +12,9 @@ use App\Http\Controllers\UserController;
 
 // apiResource=>get.post.put,deleteに対応したルーティングを自動で生成する
 Route::apiResource('/books',BookController::class);
+
+
+
 Route::apiResource('/users',UserController::class);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

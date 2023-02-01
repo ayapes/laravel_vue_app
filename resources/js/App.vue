@@ -14,6 +14,9 @@
                 <router-link to="/books" class="nav_link">登録書籍一覧</router-link>
             </li>
             <li class="nav_li">
+                <router-link to="/search" class="nav_link">書籍検索</router-link>
+            </li>
+            <li class="nav_li">
                 <router-link to="/add" class="nav_link">書籍新規登録</router-link>
             </li>
         </ul>
