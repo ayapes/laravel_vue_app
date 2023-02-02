@@ -4,6 +4,7 @@ import BookList from '../components/BookList.vue'
 import BookAdd from '../components/BookAdd.vue'
 import UserList from '../components/UserList.vue'
 import BookSearch from '../components/BookSearch.vue'
+import HomeView from '../components/HomeView.vue'
 
 export const router = createRouter({
     history: createWebHistory(),
@@ -12,7 +13,7 @@ export const router = createRouter({
         {
             path: '/',
             name: 'index',
-            component: BookList,
+            component: BookSearch,
         },
         {
             path: '/books',

@@ -32,5 +32,24 @@ class BookController extends Controller
 
         // 受け取ったデータをインスタンスに挿入し、DBに保存
         $book->fill($request->all())->save();
+        
+        // 特に返すものがないのでreturnは必要ない
+        // return △△△;
+    }
+    public function search(Request $request)
+    {
+        // キーワードを受け取れているか確認
+        // dd($request->keyword);
+        // 教科書P246参照
+        //  'LIKE',あいまい検索してください指示
+        // '%'.$request->keyword.'%' 検索前後に余計な文字ついててもOK
+        $items = Book::where('title', 'like','%'.$request->keyword.'%')
+        ->orWhere('author', 'like','%'.$request->keyword.'%')
+        ->orWhere('publisher', 'like','%'.$request->keyword.'%')
+        ->orWhere('ISBN', 'like','%'.$request->keyword.'%')
+        ->orWhere('summary', 'like','%'.$request->keyword.'%')
+        ->get();
+        
+        return $items;
     }
 }

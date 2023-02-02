@@ -40,7 +40,7 @@ export default {
     // this.data = response.data;
     //  ↓まとめてかいたらこうどす
     axios.get('/api/books')
-      .then(response => this.data = response.data)
+      .then(response => this.data = response.data);
   },
   // methods: {
   //   search() {
@@ -51,17 +51,22 @@ export default {
   //     console.log(this.data);
   //   }
   // },
-  computed: {
+
+  computed:  {
+    
     search_data() {
       return this.data.filter(value => {
         return value.title.includes(this.keyword) ||
-        value.author.includes(this.keyword) ||
-        value.publisher.includes(this.keyword)||
-        value.ISBN.includes(this.keyword)||
-        value.summary.includes(this.keyword)
-      })
+          value.author.includes(this.keyword) ||
+          value.publisher.includes(this.keyword) ||
+          value.ISBN.includes(this.keyword) ||
+          value.summary.includes(this.keyword)
+      });
     },
-  }
+
+  },
+
+
 }
 </script>
 <style>

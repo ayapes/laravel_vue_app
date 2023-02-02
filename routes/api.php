@@ -13,7 +13,7 @@ use App\Http\Controllers\UserController;
 // apiResource=>get.post.put,deleteに対応したルーティングを自動で生成する
 Route::apiResource('/books',BookController::class);
 
-
+Route::post('/books/search', [BookController::class, 'search']);
 
 Route::apiResource('/users',UserController::class);
 
