@@ -15,6 +15,10 @@ Route::apiResource('/books',BookController::class);
 
 Route::post('/books/search', [BookController::class, 'search']);
 
+// Route::apiResource('/rakuten',RakutenController::class);
+
+// Route::get('/rakuten/search', [RakutenController::class, 'get_rakuten_items']);
+
 Route::apiResource('/users',UserController::class);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
