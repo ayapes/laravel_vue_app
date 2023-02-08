@@ -6,7 +6,7 @@
     <button class="btn btn-primary" v-on:click="search">検索</button>
   </div>
   <div class="booklist" v-for="Book in Books" :key="Book.book_id">
-    <p class="booklist_title">{{ Book.title }}</p>
+    <p class="booklist_title"><router-link v-bind:to="{ name: 'book', params: { id: Book.book_id }}">{{ Book.title }}</router-link></p>
     <p class="booklist_img">
       <!-- 画像データがなければダミー画像表示するv-if -->
       <span v-if="Book.img"><img :src="Book.img" alt=""></span>
@@ -34,7 +34,7 @@ export default {
       Books: '',
       dummy: '/images/bookicon.png',
       keyword: '',
-          }
+    }
   },
   async mounted() {
     const url = '/api/books';
@@ -66,8 +66,8 @@ export default {
         value.author.includes(this.keyword) ||
         value.publisher.includes(this.keyword) ||
         value.ISBN.includes(this.keyword) ||
-        value.summary.includes(this.keyword) 
-        );
+        value.summary.includes(this.keyword)
+      );
 
       // const result = this.APIdata.filter((book) => book.title.includes(this.keyword));
       console.log(result);

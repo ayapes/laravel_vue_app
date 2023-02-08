@@ -52,4 +52,13 @@ class BookController extends Controller
         
         return $items;
     }
+
+     public function show($id){
+
+        // $id ←なんでもいい変数
+
+        $book = Book::find($id);
+        return $book->toArray();
+
+     }
 }

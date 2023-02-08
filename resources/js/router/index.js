@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 必要なコンポーネントをインポート
 import BookList from '../components/BookList.vue'
+import BookDetail from '../components/BookDetail.vue'
 import BookAdd from '../components/BookAdd.vue'
 import UserList from '../components/UserList.vue'
 import BookSearch from '../components/BookSearch.vue'
@@ -27,17 +28,22 @@ export const router = createRouter({
             component: BookAdd,
         },
         {
-        path: '/search',
-        // nameには一意な名前をつける
-        name: 'search',
-        component: BookSearch,
-    },
+            path: '/search',
+            // nameには一意な名前をつける
+            name: 'search',
+            component: BookSearch,
+        },
         {
             path: '/user',
             // nameには一意な名前をつける
             name: 'user',
             component: UserList,
-        }
+        },
+        {
+            path: '/book/:id',
+            name: 'book',
+            component: BookDetail,
+        },
     ]
 })
 
