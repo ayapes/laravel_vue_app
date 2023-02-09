@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('loans', function (Blueprint $table) {
-            $table->increments('loan_id()');
-            // $table->foreign()外部キー指定
-            $table->foreign('book_id');
-            $table->foreign('user_id');
-            $table->date('loadn_date');
+            $table->increments('loan_id');
+            $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('user_id');
+            // ↑に作ったカラムに外部キー指定↓
+            $table->foreign('book_id')->references('book_id')->on('books');
+            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->date('loan_date');
             $table->date('return_date');
             $table->timestamps();
         });

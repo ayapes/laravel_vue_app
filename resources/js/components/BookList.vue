@@ -6,11 +6,13 @@
     <button class="btn btn-primary" v-on:click="search">検索</button>
   </div>
   <div class="booklist" v-for="Book in Books" :key="Book.book_id">
-    <p class="booklist_title"><router-link v-bind:to="{ name: 'book', params: { id: Book.book_id }}">{{ Book.title }}</router-link></p>
+    <p class="booklist_title"><router-link v-bind:to="{ name: 'book', params: { id: Book.book_id } }">{{
+      Book.title
+    }}</router-link></p>
     <p class="booklist_img">
       <!-- 画像データがなければダミー画像表示するv-if -->
-      <span v-if="Book.img"><img :src="Book.img" alt=""></span>
-      <span v-else><img :src="dummy" alt=""></span>
+      <span v-if="Book.img" data-bs-toggle="modal" data-bs-target="#imgModal"><img :src="Book.img" alt=""></span>
+      <span v-else data-bs-toggle="modal" data-bs-target="#imgModal"><img :src="dummy" alt=""></span>
     </p>
     <div class="booklist_others">
       <p class="booklist_author">著者：{{ Book.author }}</p>
@@ -19,7 +21,27 @@
       <p class="booklist_gunre">ジャンル：{{ Book.gunre }}</p>
       <p class="booklist_summary">{{ Book.summary }}</p>
     </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <span v-if="Book.img"><img :src="Book.img" alt="" style="width:100%;"></span>
+          <span v-else><img :src="dummy" alt="" style="width:100%;"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  </div>
+
 
 </template>
 
