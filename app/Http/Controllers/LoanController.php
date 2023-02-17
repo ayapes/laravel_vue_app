@@ -7,9 +7,15 @@ use App\Models\Loan;
 
 class LoanController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     // 現在の貸し出し状況を表示
     public function index()
-    {
+    {       
 
         $loans = Loan::all();
         // eloquantをそのままreturnすると、jsonに変換してくれる。
@@ -30,6 +36,8 @@ class LoanController extends Controller
 
         // 受け取ったデータをインスタンスに挿入し、DBに保存
         $loan->fill($request->all())->save();
+
+        // bookのavailableをfalseにする。
 
         // 特に返すものがないのでreturnは必要ない
         // return △△△;

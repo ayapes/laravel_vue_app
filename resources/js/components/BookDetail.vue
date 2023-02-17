@@ -7,8 +7,7 @@
     <p class="booklist_title">{{ bookData.title }}</p>
     <p class="booklist_img">
       <!-- 画像データがなければダミー画像表示するv-if -->
-      <span v-if="bookData.img" data-bs-toggle="modal" data-bs-target="#exampleModal"><img :src="bookData.img"
-          alt=""></span>
+      <span v-if="bookData.img"><img :src="bookData.img" alt=""></span>
       <span v-else><img :src="dummy" alt=""></span>
     </p>
     <div class="booklist_others">
@@ -18,26 +17,31 @@
       <p class="booklist_gunre">ジャンル：{{ bookData.gunre }}</p>
       <p class="booklist_summary">{{ bookData.summary }}</p>
     </div>
-  </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      この本を借りる
+    </button>
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <span v-if="bookData.img"><img :src="bookData.img" alt="" style="width:100%;"></span>
-          <span v-else><img :src="dummy" alt="" style="width:100%;"></span>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">この本を借りる</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            （２週間後の日付）まで借りる or （レンタル中のため）借りることが出来ないことを表示
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-primary" v-on:click="rentBook" data-bs-dismiss="modal">決定</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 <script>
 import axios from "axios";
@@ -59,5 +63,37 @@ export default {
     axios.get(`/api/books/${this.$route.params.id}`)
       .then(response => this.bookData = response.data)
   },
+  methods: {
+    async rentBook() {
+      // APIに対して、借りる処理を送る
+      // loansテーブルのapiに、book_id,user_id,loan_date,return_dateを送信する処理
+      const url = "/api/loans";
+
+      // 「決定」押した時点でインスタンス作成＝押した日時
+      const now = new Date();
+      const loan_date = now.toLocaleDateString();
+
+      // 返却日は設定がない限り2週間後にする。
+      const twoWeeksLater = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 14);
+      const return_date = twoWeeksLater.toLocaleDateString();
+
+      // この本を借りることをAPIに送る
+      const response =
+        await axios.post(
+          url,
+          {
+            book_id: this.$route.params.id,
+            user_id: 1,
+            loan_date: loan_date,
+            return_date: return_date,
+
+          });
+      console.log(response);
+
+      // 本を借りたらHOMEに戻る
+      this.$router.push('/');
+
+    },
+  }
 }
 </script>
