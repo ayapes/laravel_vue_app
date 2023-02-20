@@ -41,10 +41,10 @@
       </div>
     </div>
   </div>
-
 </template>
 <script>
 import axios from "axios";
+import { addDays } from 'date-fns'; //date-fns利用
 
 export default {
   name: 'BookDetail',
@@ -74,8 +74,11 @@ export default {
       const loan_date = now.toLocaleDateString();
 
       // 返却日は設定がない限り2週間後にする。
-      const twoWeeksLater = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 14);
+      const twoWeeksLater = addDays(now, 13); //date-fns利用
       const return_date = twoWeeksLater.toLocaleDateString();
+
+      // userid一緒だとおもしろくないのでランダムにした。。。それだけ
+      const user_rand = Math.floor(Math.random() * 9);
 
       // この本を借りることをAPIに送る
       const response =
@@ -83,12 +86,13 @@ export default {
           url,
           {
             book_id: this.$route.params.id,
-            user_id: 1,
+            user_id: user_rand,
             loan_date: loan_date,
             return_date: return_date,
 
           });
       console.log(response);
+      console.log("useridは"+user_rand);
 
       // 本を借りたらHOMEに戻る
       this.$router.push('/');
