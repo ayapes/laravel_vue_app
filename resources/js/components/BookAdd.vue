@@ -1,26 +1,30 @@
 <template>
     <h3>書籍の登録</h3>
+    <label for="rakutenTitle" class="form-label">タイトル</label><input type="text" id="rakutenTitle" class="form-control" v-model="rakutenTitle">
+    <label for="rakutenAuthor" class="form-label">著者</label><input type="text" id="rakutenAuthor" class="form-control" v-model="rakutenAuthor">
+    <button v-on:click="getBooksDataByRakutenAPI" class="btn btn-success" type="button">楽天APIから書籍情報をGET</button><br><br>
     <!-- <form>はclickイベントが発生するとページを移動させる効果がある -->
     <!-- <form> -->
-        <label for="title">タイトル</label>
+        <label for="title" class="form-label">タイトル</label>
         <!-- 双方向データーバインディング　v-model P65 -->
-        <input type="text" id="title" v-model="book.title" />
+        <input type="text" class="form-control" id="title" v-model="book.title" />
         <br>
-        <label for="author">著者</label>
-        <input type="text" id="title" v-model="book.author" />
+        <label for="author" class="form-label">著者</label>
+        <input type="text" class="form-control" id="title" v-model="book.author" />
         <br>
-        <label for="publisher">出版社</label>
-        <input type="text" id="title" v-model="book.publisher" />
+        <label for="publisher" class="form-label">出版社</label>
+        <input type="text" class="form-control" id="title" v-model="book.publisher" />
         <br>
-        <label for="ISBN">ISBN</label>
-        <input type="text" id="title" v-model="book.ISBN" />
+        <label for="ISBN" class="form-label">ISBN</label>
+        <input type="text" class="form-control" id="title" v-model="book.ISBN" />
         <br>
-        <label for="summary">説明</label>
-        <input type="text" id="title" v-model="book.summary" />
+        <label for="summary" class="form-label">説明</label>
+        <input type="text" class="form-control" id="title" v-model="book.summary" />
         <br>
-        <label for="gunre">ジャンル</label>
-        <input type="text" id="title" v-model="book.gunre" />
-        <button v-on:click="send">送信</button>
+        <label for="gunre" class="form-label">ジャンル</label>
+        <input type="text" class="form-control" id="title" v-model="book.gunre" />
+        <button v-on:click="send" class="btn btn-primary" type="button">送信</button><br><br>
+        
     <!-- </form> -->
     <h5>v-modelの動作確認</h5>
     <div>{{ book.title }}</div>
@@ -44,7 +48,9 @@ export default {
                 gunre:'',
                 available: true,
 
-            }
+            },
+            rakutenTitle:'',
+            rakutenAuthor:'',
         }
     },
 
@@ -55,6 +61,11 @@ export default {
             const url = "/api/books";
             // axios.post('送信先','送信データthis.')
             const response = await axios.post(url, this.book);
+            console.log(response);
+        },
+        async getBooksDataByRakutenAPI(){
+            const url ="https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&title="+this.rakutenTitle+"&author="+this.rakutenAuthor+"applicationId=e06e2a5afcf14b52139c1fb6c58e9dbc";
+            const response = await axios.get(url);
             console.log(response);
         }
 
