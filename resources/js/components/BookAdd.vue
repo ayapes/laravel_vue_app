@@ -21,21 +21,39 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#isbn${book.Item.isbn}`">
                 Launch demo modal
             </button>
-            <!-- Modal -->
-            <div class="modal fade" v-bind:id="`isbn${book.Item.isbn}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ book.Item.title }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" v-bind:id="`isbn${book.Item.isbn}`" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ book.Item.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="booklist">
+                            <p class="booklist_title">{{ book.Item.title }}</p>
+                            <p class="booklist_img">
+                                <!-- 画像データがなければダミー画像表示するv-if -->
+                                <span v-if="book.Item.largeImageUrl"><img :src="book.Item.largeImageUrl" alt=""></span>
+                                <span v-else><img :src="dummy" alt=""></span>
+                            </p>
+                            <div class="booklist_others">
+                                <p class="booklist_author">著者：{{ book.Item.author }}</p>
+                                <p class="booklist_publisher">出版社：{{ book.Item.publisherName }}</p>
+                                <p class="booklist_isbn">ISBN：{{ book.Item.isbn }}</p>
+                                <p class="booklist_summary">{{ book.Item.itemCaption }}</p>
+                            </div>
+                            <label for="title">ジャンル</label>
+        <input type="text" class="form-control" id="title" v-model="gunre">
+        <label for="title">感想</label>
+        <textarea class="form-control" id="myReview" style="height: 150px" v-model="myReview"></textarea>
                         </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" v-on:click="addBook(book)">Save changes</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" v-on:click="addBook(book)" data-bs-dismiss="modal">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +107,7 @@ export default {
                 available: true,
             }
             await axios.post(url, Book);
+            this.$router.push('/');
         },
     }
 }
