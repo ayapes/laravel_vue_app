@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('loans', function (Blueprint $table) {
-            $table->increments('loan_id');
+            $table->bigIncrements('loan_id');
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('user_id');
             // ↑に作ったカラムに外部キー指定↓

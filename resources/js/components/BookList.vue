@@ -11,13 +11,13 @@
     }}</router-link></p>
     <p class="booklist_img">
       <!-- 画像データがなければダミー画像表示するv-if -->
-      <span v-if="Book.img" data-bs-toggle="modal" data-bs-target="#imgModal"><img :src="Book.img" alt=""></span>
+      <span v-if="Book.largeImageUrl" data-bs-toggle="modal" data-bs-target="#imgModal"><img :src="Book.largeImageUrl" alt=""></span>
       <span v-else data-bs-toggle="modal" data-bs-target="#imgModal"><img :src="dummy" alt=""></span>
     </p>
     <div class="booklist_others">
       <p class="booklist_author">著者：{{ Book.author }}</p>
       <p class="booklist_publisher">出版社：{{ Book.publisher }}</p>
-      <p class="booklist_isbn">ISBN：{{ Book.ISBN }}</p>
+      <p class="booklist_isbn">ISBN：{{ Book.isbn }}</p>
       <p class="booklist_gunre">ジャンル：{{ Book.gunre }}</p>
       <p class="booklist_summary">{{ Book.summary }}</p>
     </div>
@@ -30,7 +30,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <span v-if="Book.img"><img :src="Book.img" alt="" style="width:100%;"></span>
+          <span v-if="Book.largeImageUrl"><img :src="Book.largeImageUrl" alt="" style="width:100%;"></span>
           <span v-else><img :src="dummy" alt="" style="width:100%;"></span>
         </div>
         <div class="modal-footer">

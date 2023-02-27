@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 // 追加
 use App\Models\Book;
 use LDAP\Result;
-use GuzzleHttp;
+use GuzzleHttp\Client;
 
 class BookController extends Controller
 {
@@ -65,11 +65,21 @@ class BookController extends Controller
 
     public function getRakutenAPI(Request $request)
     {
-        $cli = new GuzzleHttp\Client([
-            'base_uri' => 'https://app.rakuten.co.jp'
+        $title = $request->title;
+        $author = $request->author;
+        $client = new Client();
+        $res = $client->request(
+            'GET',
+            'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404', [
+            'query' => [
+                'format' => 'json',
+                'applicationId' => env('RAKUTEN_APP_ID'),
+                'title' => $title,
+                'author' => $author,
+            ]
         ]);
-
-        $res = $cli->request('get', '/services/api/BooksBook/Search/20170404?format=json&title=Java&applicationId=1045443226673597322');
-        return $res->getBody();
+        $body = $res->getBody();
+        $json = json_decode($body, true);
+        return $json;
     }
 }

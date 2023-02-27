@@ -17,12 +17,13 @@ return new class extends Migration
             $table->bigIncrements('book_id');
             $table->string('title');
             $table->string('author');
-            $table->string('publisher');
-            $table->string('ISBN');
-            $table->string('img');
+            $table->string('publisherName');
+            $table->string('isbn');
+            $table->string('largeImageUrl');
             // サマリー：紹介文
-            $table->string('summary');
-            $table->string('gunre');
+            $table->string('itemCaption')->nullable();
+            $table->string('gunre')->nullable();
+            $table->string('myReview')->nullable();
             // 貸出可能かavailable
             $table->boolean('available');
             $table->timestamps();

@@ -13,13 +13,17 @@ class Book extends Model
     // ホワイトリスト（DBに入力可能・編集可能）
     // create()やupdate() 、fill()が可能
     protected $fillable = [
-        'title',
-        'author',
-        'publisher',
-        'ISBN',
-        'img',
-        'summary',
-        'gunre',
-        'available'
-      ];
+      'title',
+      'author',
+      // 'publisher',
+      'publisherName',
+      // 'ISBN',
+      'isbn',
+      // 'summary',
+      'itemCaption',
+      'gunre',
+      'myReview',
+      'largeImageUrl',
+      'available',
+  ];
 }
