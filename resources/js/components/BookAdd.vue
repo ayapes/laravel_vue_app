@@ -101,7 +101,7 @@ export default {
                 publisherName: book.Item.publisherName,
                 isbn: book.Item.isbn,
                 itemCaption: book.Item.itemCaption,
-                gunre: this.gunre,  // 仮でJavaを入れています
+                gunre: this.gunre,  
                 myReview: this.myReview,
                 largeImageUrl: book.Item.largeImageUrl,
                 available: true,
