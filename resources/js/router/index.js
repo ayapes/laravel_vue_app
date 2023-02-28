@@ -44,6 +44,11 @@ export const router = createRouter({
             name: 'book',
             component: BookDetail,
         },
+        {
+            path: '/test',
+            name: 'test',
+            component: HomeView,
+        },
     ]
 })
 
