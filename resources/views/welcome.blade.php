@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://unpkg.com/destyle.css@3.0.2/destyle.min.css">
         
 
-        <title>Laravel Vite Vue</title>
+        <title>MY Book Review</title>
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
