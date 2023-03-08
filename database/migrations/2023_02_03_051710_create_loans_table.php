@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('user_id');
             // ↑に作ったカラムに外部キー指定↓
-            $table->foreign('book_id')->references('book_id')->on('books');
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->date('loan_date');
             $table->date('return_date');
             $table->timestamps();
